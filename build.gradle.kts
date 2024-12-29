@@ -29,5 +29,5 @@ tasks.register<Exec>("deployAndReload") {
 	group = "deployment"
 	description = "Deploys and instantly refreshes the deployed application using the tomcat manager API"
 	dependsOn("deploy")
-	commandLine("curl", "localhost:8080/text/reload?path=/timelogger")
+	commandLine("curl", "-s", "-u", System.getenv("MANAGER_CREDENTIALS"), "localhost:8080/manager/text/reload?path=/timelogger")
 }
